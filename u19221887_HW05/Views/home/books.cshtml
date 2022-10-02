@@ -1,0 +1,98 @@
+﻿@model IEnumerable<u19221887_HW05.Models.ViewModels.bookCombination>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Books</h2>
+<hr />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4">
+            <input class="form-control" placeholder="Search Book Name" />
+        </div>
+        <div class="col-lg-2">
+            <select class="form-control" placeholder="Select a Type">
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <select class="form-control" placeholder="Select a Author">
+            </select>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-success btn-lg"> Search </button>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-danger btn-lg"> Clear </button>
+        </div>
+    </div>
+</div>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Page Count
+            </th>
+            <th>
+                Points
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.bookId
+                </td>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.authorSurname
+                </td>
+                <td>
+                    @item.typeName
+                </td>
+                <td>
+                    @item.pagecount
+                </td>
+                <td>
+                    @item.point
+                </td>
+                <td>
+                    @if (item.status == true)
+                    {
+                        <span class="text-success">Available</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Out</span>
+                    }
+                </td>
+                <td>
+                    <button class="btn btn-primary"> onclick="window.location.href = '@Url.Action("Details", "Home", new { bookId = item.bookId })'"> View</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
